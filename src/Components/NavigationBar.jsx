@@ -1,11 +1,11 @@
 import React from "react"
-import './index.css'
+import '../index.css'
 // import {Link} from 'react-router-dom'
 import {Link} from 'react-scroll'
 export default function NavigationBar(){
 
     return(
-        <div className="sticky top-0 z-10 py-2 uppercase font-medium text-gray-300 bg-gray-900">
+        <div className="sticky top-0 z-40 py-2 uppercase font-medium text-gray-300 bg-gray-900">
             <div className="flex justify-around font-pop">
                 <p className="hidden md:block capitalize font-black text-4xl font-sans tracking-widest font-pop">TLA</p>
                 <ul className="flex flex-row justify-center items-center">

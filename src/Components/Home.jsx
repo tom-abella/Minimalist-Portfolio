@@ -1,7 +1,13 @@
-import React, { useEffect } from "react";
+import React, {useState } from "react";
 import AOS from "aos";
 import 'aos/dist/aos.css'
+import Email from "../Popup/Email";
 export default function Body(){
+    const [modalOn, setModalOn] = useState(false);
+
+    const clicked = () => {
+    setModalOn(true)
+    }
     return(
 
         <div className="font-pop" id="home">
@@ -13,8 +19,11 @@ export default function Body(){
                     <li><a href="https://www.instagram.com/abella_tl/" target={"_blank"}><i className="fa fa-instagram fa-2x mx-2 p-2 hover:text-rose-500 cursor-pointer"></i></a></li>
                     <li><a href="https://github.com/tom-abella" target={"_blank"}><i className="fa fa-github fa-2x mx-2 p-2 hover:text-slate-400 cursor-pointer"></i></a></li>
                     <li><a href="https://www.linkedin.com/in/tom-leonard-abella" target={"_blank"}><i className="fa fa-linkedin fa-2x mx-2 p-2 hover:text-blue-500 cursor-pointer"></i></a></li>
-                    <li><a href="mailto:tomleonardabella@gmail.com" target={"_blank"}><i className="fa fa-envelope-o fa-2x mx-2 p-2 hover:text-red-500 cursor-pointer"></i></a></li>
+                    <li><button onClick={clicked}>
+                        <i className="fa fa-envelope-o fa-2x mx-2 p-2 hover:text-red-500 cursor-pointer"></i></button></li>
                 </ul>
+                
+                {modalOn && < Email setModalOn={setModalOn}/>}
             </div>
         </div>
     )

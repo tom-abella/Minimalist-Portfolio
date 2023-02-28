@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import alternative from "./assets/alternative.png"
-import cardBank from "./assets/cardBank.png"
-import firstPortfolio from "./assets/firstPortfolio.png"
-import businessCard from "./assets/businessCard.png"
-import travelJournal from "./assets/travelJournal.png"
-import secondPortfolio from "./assets/secondPortfolio.png"
+import alternative from "../assets/alternative.png"
+import cardBank from "../assets/cardBank.png"
+import firstPortfolio from "../assets/firstPortfolio.png"
+import businessCard from "../assets/businessCard.png"
+import travelJournal from "../assets/travelJournal.png"
+import secondPortfolio from "../assets/secondPortfolio.png"
 import {BsGlobe, BsCodeSlash} from 'react-icons/bs';
 import { SiReact, SiTailwindcss, SiBootstrap} from 'react-icons/si';
 import AOS from "aos";

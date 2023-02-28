@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import Carousel from "./Carousel"
 import {SiBootstrap, SiTailwindcss, SiReact, SiHtml5, SiCss3, SiJavascript, SiMysql, SiPython, SiArduino, SiCisco, SiAndroid, SiFirebase} from 'react-icons/si';
 import { BsFillEyeFill } from 'react-icons/bs';
-import codex from "./assets/codex.png"
-import openWeaver from "./assets/openweaver.png"
-import tup2 from "./assets/tup2.png"
-import dict1 from "./assets/dict1.png"
-import STI from "./assets/STI.png"
-import dict2 from "./assets/dict2.png"
-import dict4 from "./assets/dict4.png"
-import freecodecamp1 from "./assets/freecodecamp.png"
-import freecodecamp2 from "./assets/freecodecamp2.png"
-import aws from "./assets/aws.png"
-import dict3 from "./assets/dict3.png"
-import stacktreck from "./assets/stacktreck.png"
+import codex from "../assets/codex.png"
+import openWeaver from "../assets/openweaver.png"
+import tup2 from "../assets/tup2.png"
+import dict1 from "../assets/dict1.png"
+import STI from "../assets/STI.png"
+import dict2 from "../assets/dict2.png"
+import dict4 from "../assets/dict4.png"
+import freecodecamp1 from "../assets/freecodecamp.png"
+import freecodecamp2 from "../assets/freecodecamp2.png"
+import aws from "../assets/aws.png"
+import dict3 from "../assets/dict3.png"
+import stacktreck from "../assets/stacktreck.png"
 import AOS from "aos";
 import 'aos/dist/aos.css'
 export default function Skillset(){
