@@ -18,7 +18,7 @@ const Email = ({ setModalOn }) => {
 };
     return (
 
-        <div className="font-pop bg-zinc-900 opacity-95 fixed inset-0 z-50 ">
+        <div className="font-pop bg-zinc-900 opacity-99 fixed inset-0 z-50 ">
 
             <div className="flex h-screen justify-center items-center ">
 
