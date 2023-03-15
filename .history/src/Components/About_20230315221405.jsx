@@ -3,7 +3,7 @@ import photo from '../assets/Picture.jpg'
 import {Link} from 'react-scroll'
 import AOS from "aos";
 import 'aos/dist/aos.css'
-import CV from "../assets/CV/CV - Tom Leonard Abella.pdf"
+import CV from "../assets/CV/CV - Abella Tom Leonard.pdf"
 export default function About(){
     useEffect(()=>{
         AOS.init()

@@ -23,7 +23,7 @@ useEffect(()=>{
           {/* Project 1*/}
             <div className="flex flex-col md:flex-row justify-center items-center flex-wrap ">
             <div className="w-96 h-115 p-3 border-2 rounded-lg border-gray-500 m-3 hover:bg-gray-300 hover:text-gray-900 text-gray-300" data-aos="fade-up" data-aos-duration="300">
-              <ul className="flex flex-col gap-3">
+              <ul className="text-gray-300 flex flex-col gap-3">
                 <li><img src={alternative} alt="Alternative Learning Platform" className="rounded-lg"/></li>
                 <li className="flex justify-evenly items-cente">
                     <a href="https://tom-abella.github.io/Alternative-Education-Platform/" target={"_blank"} className="py-1 rounded-lg px-4 hover:text-blue-700 text-gray-600"><BsGlobe size={30}/></a>
@@ -38,7 +38,7 @@ useEffect(()=>{
             </div>
             {/* Project 2*/}
             <div className="w-96 h-115 p-3 border-2 rounded-lg border-gray-500 m-3 hover:bg-gray-300 hover:text-gray-900 text-gray-300" data-aos="fade-up" data-aos-duration="400">
-              <ul className="flex flex-col gap-3">
+              <ul className="text-gray-300 flex flex-col gap-3">
                 <li><img src={cardBank} alt="Card Bank" className="rounded-lg"/></li>
                 <li className="flex justify-evenly items-cente">
                     <a href="https://card-bank-92vryqdox-tom-abella.vercel.app/" target={"_blank"} className="py-1 rounded-lg px-4 hover:text-blue-700 text-gray-600"><BsGlobe size={30}/></a>
