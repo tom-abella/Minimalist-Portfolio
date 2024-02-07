@@ -1,14 +1,23 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import AOS from "aos";
 import 'aos/dist/aos.css'
-import Email from "../Popup/Email";
-export default function Body(){
-    const [modalOn, setModalOn] = useState(false);
+import {
+    Button,
+    Dialog,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Typography,
+    Input,
+    Checkbox,
+    Textarea,
+} from "@material-tailwind/react";
+export default function Body() {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
 
-    const clicked = () => {
-    setModalOn(true)
-    }
-    return(
+    return (
 
         <div className="font-pop" id="home">
             <div className="h-screen flex flex-col capitalize justify-center items-center  w-full text-gray-300">
@@ -19,11 +28,36 @@ export default function Body(){
                     <li><a href="https://www.instagram.com/abella_tl/" target={"_blank"}><i className="fa fa-instagram fa-2x mx-2 p-2 hover:text-rose-500 cursor-pointer"></i></a></li>
                     <li><a href="https://github.com/tom-abella" target={"_blank"}><i className="fa fa-github fa-2x mx-2 p-2 hover:text-slate-400 cursor-pointer"></i></a></li>
                     <li><a href="https://www.linkedin.com/in/tom-leonard-abella" target={"_blank"}><i className="fa fa-linkedin fa-2x mx-2 p-2 hover:text-blue-500 cursor-pointer"></i></a></li>
-                    <li><button onClick={clicked}>
-                        <i className="fa fa-envelope-o fa-2x mx-2 p-2 hover:text-red-500 cursor-pointer"></i></button></li>
+                    <li>
+
+                        <button onClick={handleOpen}><i className="fa fa-envelope-o fa-2x mx-2 p-2 hover:text-slate-400 cursor-pointer"></i></button>
+
+                    </li>
                 </ul>
-                
-                {modalOn && < Email setModalOn={setModalOn}/>}
+
+                {/* dialog box */}
+                <Dialog
+                    size="xs"
+                    open={open}
+                    handler={handleOpen}
+                    className="bg-transparent shadow-none w-full"
+                >
+                    <Card className="mx-auto w-full max-w-[24rem]">
+                        <CardBody className="flex flex-col gap-4">
+                            <Typography variant="h4" color="blue-gray" className="capitalize">
+                                connect with me
+                            </Typography>
+                            <Input label="Your Email" size="lg" />
+                            <Input label="Subject" size="lg" />
+                            <Textarea label="Message" size="lg" />
+                        </CardBody>
+                        <CardFooter className="pt-0 items-center justify-center flex">
+                            <Button variant="gradient" onClick={handleOpen} className="flex items-center justify-center gap-2">
+                                <i className="fa fa-send cursor-pointer"></i>  <p>Send Message</p>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                </Dialog>
             </div>
         </div>
     )
