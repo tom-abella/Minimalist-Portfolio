@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AOS from "aos";
+import axios from "axios";
 import 'aos/dist/aos.css'
 import {
     Button,
@@ -15,7 +16,27 @@ import {
 } from "@material-tailwind/react";
 export default function Body() {
     const [open, setOpen] = useState(false);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
     const handleOpen = () => setOpen((cur) => !cur);
+
+    const handleSendMessage = async()=>{
+        const emailDetails ={
+            "email": email,
+            "senderName": name
+        }
+        try{
+            console.log(emailDetails)
+            const sendEmail = await axios.post(" https://x8yph5yvrg.execute-api.ap-southeast-1.amazonaws.com/default/PortfolioEmailSender",emailDetails)
+            alert("Email send", JSON.stringify(sendEmail.data))
+        }
+        catch(error){
+            console.log(error)
+            alert("Error sending email", JSON.stringify(error))
+        }
+    }
 
     return (
 
@@ -47,12 +68,28 @@ export default function Body() {
                             <Typography variant="h4" color="blue-gray" className="capitalize">
                                 connect with me
                             </Typography>
-                            <Input label="Your Email" size="lg" />
-                            <Input label="Subject" size="lg" />
-                            <Textarea label="Message" size="lg" />
+                            <Input
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                                label="Your Email" 
+                                size="lg" 
+                                placeholder="tomleonardabella@gmail.com"/>
+                            <Input
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                                label="Your Name" 
+                                size="lg"  
+                                placeholder="Tom Leonard Abella"/>
+                            <Input
+                                value={subject}
+                                onChange={(e)=>setSubject(e.target.value)}
+                                    label="Subject" 
+                                    size="lg"  
+                                    placeholder="Inquire"/>
+                            <Textarea onChange={(e)=>setMessage(e.target.value)} value={message} label="Message" size="lg" />
                         </CardBody>
                         <CardFooter className="pt-0 items-center justify-center flex">
-                            <Button variant="gradient" onClick={handleOpen} className="flex items-center justify-center gap-2">
+                            <Button variant="gradient" onClick={handleSendMessage} className="flex items-center justify-center gap-2">
                                 <i className="fa fa-send cursor-pointer"></i>  <p>Send Message</p>
                             </Button>
                         </CardFooter>
