@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import AOS from "aos";
-import axios from "axios";
+import emailjs from '@emailjs/browser';
 import 'aos/dist/aos.css'
 import {
     Button,
@@ -18,24 +18,19 @@ export default function Body() {
     const [open, setOpen] = useState(false);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const handleOpen = () => setOpen((cur) => !cur);
 
-    const handleSendMessage = async()=>{
-        const emailDetails ={
-            "email": email,
-            "senderName": name
-        }
-        try{
-            console.log(emailDetails)
-            const sendEmail = await axios.post(" https://x8yph5yvrg.execute-api.ap-southeast-1.amazonaws.com/default/PortfolioEmailSender",emailDetails)
-            alert("Email send", JSON.stringify(sendEmail.data))
-        }
-        catch(error){
-            console.log(error)
-            alert("Error sending email", JSON.stringify(error))
-        }
+    const form = useRef();
+
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+        emailjs.sendForm('service_jakluhz', 'template_nu6dt2p', form.current, 'zrnB7TDR-vHn_wtwR')
+        .then((result) => {
+            alert("Message Sent Successfully!")
+        }, (error) => {
+            alert("Error! Message not Sent!")
+        });
     }
 
     return (
@@ -63,37 +58,45 @@ export default function Body() {
                     handler={handleOpen}
                     className="bg-transparent shadow-none w-full"
                 >
+                    <form ref={form} onSubmit={handleSendMessage}>
                     <Card className="mx-auto w-full max-w-[24rem]">
                         <CardBody className="flex flex-col gap-4">
                             <Typography variant="h4" color="blue-gray" className="capitalize">
                                 connect with me
                             </Typography>
+                            
                             <Input
+                                id="email" 
+                                name="email"
                                 value={email}
-                                onChange={(e)=>setEmail(e.target.value)}
-                                label="Your Email" 
-                                size="lg" 
-                                placeholder="tomleonardabella@gmail.com"/>
+                                onChange={(e) => setEmail(e.target.value)}
+                                label="Your Email"
+                                size="lg"
+                                placeholder="tomleonardabella@gmail.com" />
                             <Input
-                            value={name}
-                            onChange={(e)=>setName(e.target.value)}
-                                label="Your Name" 
-                                size="lg"  
-                                placeholder="Tom Leonard Abella"/>
-                            <Input
-                                value={subject}
-                                onChange={(e)=>setSubject(e.target.value)}
-                                    label="Subject" 
-                                    size="lg"  
-                                    placeholder="Inquire"/>
-                            <Textarea onChange={(e)=>setMessage(e.target.value)} value={message} label="Message" size="lg" />
+                                id="fullName"
+                                name="from_name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                label="Your Name"
+                                size="lg"
+                                placeholder="Tom Leonard Abella" />
+                            <Textarea 
+                            onChange={(e) => setMessage(e.target.value)} 
+                            value={message} 
+                            label="Message"
+                            name="message" 
+                            id="message"
+                            size="lg" />
+                        
                         </CardBody>
                         <CardFooter className="pt-0 items-center justify-center flex">
-                            <Button variant="gradient" onClick={handleSendMessage} className="flex items-center justify-center gap-2">
+                            <Button id="send_mail" variant="gradient" type="submit" className="flex items-center justify-center gap-2">
                                 <i className="fa fa-send cursor-pointer"></i>  <p>Send Message</p>
                             </Button>
                         </CardFooter>
                     </Card>
+                    </form>
                 </Dialog>
             </div>
         </div>
