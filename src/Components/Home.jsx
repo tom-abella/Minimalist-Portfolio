@@ -12,25 +12,47 @@ import {
     Typography,
     Input,
     Checkbox,
+    Spinner,
     Textarea,
 } from "@material-tailwind/react";
+import { MdOutlineError, MdOutlineCheck } from "react-icons/md";
 export default function Body() {
-    const [open, setOpen] = useState(false);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
-    const handleOpen = () => setOpen((cur) => !cur);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
+    const [openAlert, setOpenAlert] = useState(false);
+    const handleOpenAlert = () => setOpenAlert(!openAlert);
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const form = useRef();
 
     const handleSendMessage = async (e) => {
+        setLoading(true)
         e.preventDefault();
-        emailjs.sendForm('service_jakluhz', 'template_nu6dt2p', form.current, 'zrnB7TDR-vHn_wtwR')
-        .then((result) => {
-            alert("Message Sent Successfully!")
-        }, (error) => {
-            alert("Error! Message not Sent!")
-        });
+        try{
+            const response = await emailjs.sendForm('service_jakluhz', 'template_nu6dt2p', form.current, 'zrnB7TDR-vHn_wtwR')
+        if (response.text === "OK") {
+            setSuccess(true)
+            handleOpen()
+            handleOpenAlert()
+            setLoading(false)
+        } else {
+            setSuccess(false)
+            handleOpen()
+            handleOpenAlert()
+            setLoading(false)
+        }
+        }
+        catch(error){
+            console.log(error)
+            setLoading(false)
+        }
+        setEmail("")
+        setName("")
+        setMessage("")
     }
 
     return (
@@ -59,44 +81,92 @@ export default function Body() {
                     className="bg-transparent shadow-none w-full"
                 >
                     <form ref={form} onSubmit={handleSendMessage}>
+                        <Card className="mx-auto w-full max-w-[24rem]">
+                            <CardBody className="flex flex-col gap-4">
+                                <Typography variant="h4" color="blue-gray" className="capitalize">
+                                    Message Me
+                                </Typography>
+
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    label="Your Email"
+                                    size="lg"
+                                    required
+                                    placeholder="tomleonardabella@gmail.com" />
+                                <Input
+                                    id="fullName"
+                                    name="from_name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    label="Your Name"
+                                    size="lg"
+                                    required
+                                    placeholder="Tom Leonard Abella" />
+                                <Textarea
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    value={message}
+                                    label="Message"
+                                    name="message"
+                                    id="message"
+                                    required
+                                    size="lg" />
+
+                            </CardBody>
+                            <CardFooter className="pt-0 items-center justify-center flex">
+
+                                {loading ? (
+                                    <Button variant="gradient" disabled className="flex items-center justify-center gap-2">
+                                        <Spinner className="w-full" />
+                                    </Button>
+                                ) : (
+                                    <Button id="send_mail" variant="gradient" type="submit" className="flex items-center justify-center gap-2">
+                                        <i className="fa fa-send cursor-pointer"></i>  <p>Send Message</p>
+                                    </Button>
+                                )}
+
+                            </CardFooter>
+                        </Card>
+                    </form>
+                </Dialog>
+
+                {/* dialog box */}
+                <Dialog
+                    size="xs"
+                    open={openAlert}
+                    handler={handleOpenAlert}
+                    className="bg-transparent shadow-none w-full"
+                >
                     <Card className="mx-auto w-full max-w-[24rem]">
-                        <CardBody className="flex flex-col gap-4">
-                            <Typography variant="h4" color="blue-gray" className="capitalize">
-                                connect with me
-                            </Typography>
-                            
-                            <Input
-                                id="email" 
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                label="Your Email"
-                                size="lg"
-                                placeholder="tomleonardabella@gmail.com" />
-                            <Input
-                                id="fullName"
-                                name="from_name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                label="Your Name"
-                                size="lg"
-                                placeholder="Tom Leonard Abella" />
-                            <Textarea 
-                            onChange={(e) => setMessage(e.target.value)} 
-                            value={message} 
-                            label="Message"
-                            name="message" 
-                            id="message"
-                            size="lg" />
-                        
-                        </CardBody>
+
+                        {!success ? (
+                            <CardBody className="flex flex-col gap-4 items-center justify-center">
+                                <MdOutlineError size={100} color="#161616" />
+                                <Typography variant="h6" color="blue-gray" className="capitalize">
+                                    Error sending email. Please try again.
+                                </Typography>
+                            </CardBody>
+                        ) : (
+                            <CardBody className="flex flex-col gap-4 items-center justify-center">
+                                <MdOutlineCheck size={100} color="#161616" />
+                                <Typography variant="h6" color="blue-gray" className="capitalize">
+                                    Email sent successfully.
+                                </Typography>
+                            </CardBody>
+                        )}
+
+
+
+
+
                         <CardFooter className="pt-0 items-center justify-center flex">
-                            <Button id="send_mail" variant="gradient" type="submit" className="flex items-center justify-center gap-2">
-                                <i className="fa fa-send cursor-pointer"></i>  <p>Send Message</p>
+                            <Button variant="gradient" onClick={handleOpenAlert} className="flex items-center justify-center gap-2">
+                                <p>Okay</p>
                             </Button>
                         </CardFooter>
                     </Card>
-                    </form>
                 </Dialog>
             </div>
         </div>

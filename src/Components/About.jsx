@@ -15,12 +15,12 @@ export default function About() {
                     <img src={photo} alt="" />
                 </div>
             </div>
-            <ul className=" flex gap-5 items-start justify-start flex-row w-full h-full ">
-                <li className="h-full w-[30rem] flex flex-col justify-start items-start">
+            <ul className=" flex gap-5 items-center lg:items-start justify-center lg:justify-start flex-col lg:flex-row w-full h-full ">
+                <li className="h-full w-[30rem] flex flex-col justify-center items-center lg:justify-start lg:items-start">
                     <p className="text-base" data-aos="fade-up" data-aos-duration="900">Hi! I'm Tom Leonard Abella</p>
                     <p className="text-base" data-aos="fade-up" data-aos-duration="900">Software Developer / Javascript Fan</p>
                 </li>
-                <li className=" flex flex-col w-[30rem] justify-start items-start text-base text-start gap-2">
+                <li className=" flex flex-col w-[30rem] text-base justify-center items-center lg:justify-start lg:items-start lg:text-start gap-2">
                     <p className="text-base" data-aos="fade-up" data-aos-duration="900">Interested in the entire frontend spectrum and working on ambitious projects with interesting people.</p>
                     <p className="text-base" data-aos="fade-up" data-aos-duration="900">Problem solver, well-organised person, loyal employee with high attention to detail.
                         Fan of Boxing, outdoor activities, video games, and coding of course. </p>
