@@ -79,7 +79,7 @@ export default function Contact() {
                             label="Email"
                             size="lg"
                             required
-                            className="border-white text-white"
+                           
                             placeholder="tomleonardabella@gmail.com" />
                         <Input
                             id="fullName"
