@@ -7,6 +7,15 @@ module.exports = withMT({
   "./src/**/*.{js,ts,jsx,tsx}"
 ],
   theme: {
+    navbar: {
+      styles: {
+        base: {
+          navbar: {
+            gray: "bg-gray-900"
+          }
+        }
+      }
+    },
     extend: {
       fontFamily:{
         'pop':['Poppins','sans-serif']

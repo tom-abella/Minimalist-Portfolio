@@ -28,6 +28,7 @@
     background-attachment: fixed;
     filter: brightness(50%);
     object-position: center;
+    display: flex;
   }
   html{
     scroll-snap-type: y proximity;
