@@ -32,7 +32,7 @@ export default function Certificates() {
                     <div key={index} data-aos="fade-up" data-aos-duration="900">
                         <button onClick={() => handleChangeImage(imageLinks)} className="h-40 w-full max-w-full">
                             <img
-                                className="h-40 w-full max-w-full rounded-lg object-s object-center"
+                                className="h-40 w-full max-w-full rounded-lg object-s object-top object-cover"
                                 src={imageLinks}
                                 alt="gallery-photo"
                             />

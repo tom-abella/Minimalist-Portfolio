@@ -22,6 +22,7 @@ import stacktreck from "../assets/Certificates/stacktreck.png"
 import STI from "../assets/Certificates/STI.png"
 import tup1 from "../assets/Certificates/codex.png"
 import tup2 from "../assets/Certificates/tup2.png"
+import advanceReact from "../assets/Certificates/advanceReact.png"
 //Certificates
 export const project =
     [
@@ -99,6 +100,9 @@ export const certificates =
         },
         {
             imageLinks: tup2
+        },
+        {
+            imageLinks: advanceReact
         },
     ]
 

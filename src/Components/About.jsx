@@ -3,7 +3,6 @@ import photo from '../assets/photo.png'
 import { Link } from 'react-scroll'
 import AOS from "aos";
 import 'aos/dist/aos.css'
-import CV from "../assets/CV/CV - Tom Leonard Abella.pdf"
 
 export default function About() {
     useEffect(() => {
